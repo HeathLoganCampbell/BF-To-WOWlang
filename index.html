@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+  
+  const LOOKUP_TABLE = {
+    "+": "WOW",
+    "-": "wow",
+    ">": "woW",
+    "<": "Wow",
+    "[": "WOw",
+    "]": "wOW",
+    ".": "WoW", //output
+    ",": "wOw", //input
+  }
+
+  function getWOWCommand(command) 
+  {
+    var wowCmd = LOOKUP_TABLE[command];//BF => WOW command
+    if (wowCmd == undefined || wowCmd == null) return "";
+    return wowCmd;
+  }
+
+  function convertBFToWOW(programCode)
+  {
+    var output = ""
+    for (var c = 0; c < programCode.length; c++) 
+    {
+      var wowCmd = getWOWCommand(programCode[c]);
+      output += wowCmd + " ";
+    }
+    return output;
+  }
+
+  function run()
+  {
+    var editorBF = document.getElementById("editor-bf");
+    var editorWOW = document.getElementById("editor-wow");
+    var bfProgram = editorBF.value;
+    var wowProgram = convertBFToWOW(bfProgram);
+    console.log(wowProgram)
+    editorWOW.value = wowProgram;
+  }
+  
+  </script>
+</head>
+<body>
+  <h1>Paste In BF Code</h1>
+  <textarea id="editor-bf"></textarea>
+  <button onClick="run()">Convert</button>
+  <h1>Copy out WOW Code</h1>
+  <textarea id="editor-wow"></textarea>
+</body>
+</html>
